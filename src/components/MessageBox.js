@@ -56,7 +56,13 @@ export default class MessageBox extends Component {
 
     render() {
         const messageNodes = this.state.messages.map((message) => {
-            return (<Message
+            if (message.self === true) {
+                return (<Message
+                self={true}
+                key={message.id}
+                message={message} />)
+            }
+            return (<Message 
                 key={message.id}
                 message={message} />)
         })

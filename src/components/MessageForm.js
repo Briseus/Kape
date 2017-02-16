@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap'
-
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
+import { Row, Grid, Col } from 'react-bootstrap'
 export default class MessageForm extends Component {
 
     constructor(props) {
@@ -22,14 +23,11 @@ export default class MessageForm extends Component {
         })
     }
 
-componentDidMount() {
-    console.log(this.props)
-}
-
     onSubmit = (e) => {
         e.preventDefault();
 
         const message = {
+            self: true,
             time: new Date().valueOf(),
             text: this.state.value,
             id: new Date().valueOf()
@@ -37,7 +35,14 @@ componentDidMount() {
         this.sendMessage(message)
     }
 
+    resetTextField = () => {
+        this.setState({
+            value: ""
+        })
+    }
+
     sendMessage = (message) => {
+        this.resetTextField()
         let jsonMessage = JSON.stringify(message)
         this.props.postMessage(message);
         this.props.socket.emit('message all', 'Anon#' + message.id, jsonMessage);
@@ -47,18 +52,20 @@ componentDidMount() {
         return (
             <div className="footerPost">
                 <form onSubmit={this.onSubmit}>
-                    <FormGroup controlId="formBasicText"
-                        validationState={this.getValidationState}>
-                        <ControlLabel>Type below to post</ControlLabel>
-                        <FormControl type="text"
-                            value={this.state.value}
-                            placeholder="Enter text"
-                            onChange={this.handleChange} />
-                        <FormControl.Feedback />
-                    </FormGroup>
-                    <Button type="submit" >
-                        Post
-            </Button>
+                    <Row >
+                        <Grid>
+                            <Col xs={10} >
+                                <TextField
+                                    fullWidth={true}
+                                    floatingLabelText="Type here to post"
+                                    value={this.state.value}
+                                    onChange={this.handleChange} />
+                            </Col>
+                            <Col xs={2}>
+                                <RaisedButton className="postButton" type="submit" label="Post" />
+                            </Col>
+                        </Grid>
+                    </Row>
                 </form>
             </div>
         )
