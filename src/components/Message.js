@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import { Panel } from 'react-bootstrap'
 
 export default class Message extends Component {
+
     render() {
+        const time = (
+           new Date(this.props.message.time).toString()
+        )
         const title = (
-            <h3> {this.props.message.id} + {this.props.message.time} </h3>
+             "Anon#" + this.props.message.id
         )
         return (
             <li>
-                <Panel style={{textAlign:'left'}} header={title}>
+                <Panel style={{textAlign:'left'}} header={title+time}>
                     <p> {this.props.message.text} </p>
                 </Panel>
             </li>

@@ -40,22 +40,9 @@ export default class MessageBox extends Component {
             if (this.scrollAtBottom) {
                 this.scrollToBottom()
             }
-
         }
 
 
-    }
-
-    componentDidMount() {
-        //send test message
-        this.props.socket.emit('message all', 'Makamaka', 'Joined messagebox');
-
-        //when getting message
-        this.props.socket.on('message all', (from, message) => {
-            var tempMessage = "Got " + from + " said " + message;
-            console.log("tring to add -> " + tempMessage);
-            this.props.postMessage(tempMessage);
-        });
     }
 
     scrollToBottom = () => {

@@ -1,7 +1,7 @@
 
 function initialState() {
     return {
-        messages: [{time: 0, text: "Welcome to kape chat!", id: "Admin"}],
+        messages: [{time: new Date().valueOf(), text: "Welcome to kape chat!", id: "Admin"}],
         message: ""
     }
 }

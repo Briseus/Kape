@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-import MessageBox from './components/MessageBox'
+import MessageBox from './containers/MessageBox'
 import MessageForm from './components/MessageForm'
 import { Grid, Row } from 'react-bootstrap'
 import './App.css';
@@ -8,33 +8,33 @@ import './App.css';
 const socket = io.connect('localhost:3000', { reconnect: true });
 
 
-class App extends Component {
+export default class Chat extends Component {
 
   componentDidMount() {
     console.log('Mounted');
     // verify connection
     socket.on('connect', function () { console.log("socket connected"); });
-
-    socket.on('message all', (from, jsonMessage) => {
-      let message = JSON.parse(jsonMessage);
-      console.log(message.id + "" + message.time + "" + message.text);
-      console.log("tring to add -> " + message);
-      this.props.postMessage(message);
+    
+    //when getting message
+    socket.on('message all', (from, message) => {
+      var tempMessage = "Got " + from + " said " + message;
+      console.log("tring to add -> " + tempMessage);
+      this.props.postMessage(tempMessage);
     });
   }
+
+
 
   render() {
     return (
       <div className="container">
         <Grid>
           <Row>
-            <MessageBox {...this.props}/>
-            <MessageForm socket={socket} {...this.props} />
+            <MessageBox />
+            <MessageForm socket={socket} />
           </Row>
         </Grid>
       </div>
     );
   }
 }
-
-export default App;
