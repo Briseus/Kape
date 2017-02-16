@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import Message from './Message'
 
 export default class MessageBox extends Component {
+
+    static scrollAtBottom = true;
 
     constructor(props) {
         super(props)
@@ -9,23 +12,44 @@ export default class MessageBox extends Component {
             messages: []
         }
     }
+
     componentWillReceiveProps(nextProps) {
         this.setState({
             messages: nextProps.messages
         })
     }
 
+    componentWillUpdate(nextProps) {
+        this.newMessages = nextProps.messages.length !== this.state.messages
+        if (this.newMessages) {
+            const { messages } = this.refs
+            const scrollPosition = messages.scrollTop
+            const scrollBottom = (messages.scrollHeight - messages.clientHeight)
+            this.scrollAtBottom = (scrollBottom === 0) || (scrollPosition === scrollBottom)
+        }
+    }
+
     componentWillMount() {
-        console.log(this.props)
-            this.setState({
-                messages : this.props.messages
-            })
+        this.setState({
+            messages: this.props.messages
+        })
+    }
+
+    componentDidUpdate() {
+        if (this.newMessages) {
+            if (this.scrollAtBottom) {
+                this.scrollToBottom()
+            }
+
+        }
+
+
     }
 
     componentDidMount() {
         //send test message
         this.props.socket.emit('message all', 'Makamaka', 'Joined messagebox');
-        
+
         //when getting message
         this.props.socket.on('message all', (from, message) => {
             var tempMessage = "Got " + from + " said " + message;
@@ -34,15 +58,26 @@ export default class MessageBox extends Component {
         });
     }
 
+    scrollToBottom = () => {
+        const { messages } = this.refs
+        const scrollHeight = messages.scrollHeight
+        const height = messages.clientHeight
+        const maxScrollTop = scrollHeight - height
+        ReactDOM.findDOMNode(messages).scrollTop = maxScrollTop > 0 ? maxScrollTop : 0
+
+    }
+
     render() {
-        var messageNodes = this.state.messages.map((message) => {
+        const messageNodes = this.state.messages.map((message) => {
             return (<Message
                 key={message.id}
                 message={message} />)
         })
         return (
-            <div className="messages">
-                {messageNodes}
+            <div>
+                <ul className="messagesContainer" ref="messages">
+                    {messageNodes}
+                </ul>
             </div>
         )
     }

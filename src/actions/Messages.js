@@ -11,10 +11,3 @@ export const postMessage = (message) => {
         message: message
     }
 }
-
-export function getAllMessages() {
-    return function (dispatch, getState) {
-        let state = getState();
-        return dispatch(getMessages(state.messages))
-    }
-}

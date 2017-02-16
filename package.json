@@ -6,12 +6,14 @@
     "react-scripts": "0.9.0"
   },
   "dependencies": {
+    "bootstrap": "3",
     "debug": "^2.6.1",
     "express": "^4.14.1",
     "immutability-helper": "^2.1.1",
     "immutable": "^3.8.1",
     "morgan": "^1.8.1",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",

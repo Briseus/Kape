@@ -14,8 +14,6 @@ export function messageStore(state, action) {
             tempMessages = state.messages.concat(action.message)
             return { messages: tempMessages }
         case 'GET_MESSAGES':
-            console.log("Get messages")
-            console.log(previousState.messages)
             return previousState.messages
         default:
             return previousState
