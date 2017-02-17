@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Row, Grid, Col } from 'react-bootstrap'
 import shortid from 'shortid'
+import Paper from 'material-ui/Paper'
 
 export default class MessageForm extends Component {
 
@@ -53,24 +54,27 @@ export default class MessageForm extends Component {
 
     render() {
         return (
-            <div className="footerPost">
+           
+                 <Paper className="footerPost">
                 <form onSubmit={this.onSubmit}>
                     <Row >
                         <Grid>
-                            <Col xs={10} >
+                            <Col xs={8} md={10} >
                                 <TextField
                                     fullWidth={true}
                                     floatingLabelText="Type here to post"
                                     value={this.state.value}
                                     onChange={this.handleChange} />
                             </Col>
-                            <Col xs={2}>
+                            <Col xs={4} md={2}>
                                 <RaisedButton className="postButton" type="submit" label="Post" />
                             </Col>
                         </Grid>
                     </Row>
                 </form>
-            </div>
+                </Paper>
+            
+            
         )
     }
 

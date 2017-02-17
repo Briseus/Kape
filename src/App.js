@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import { Grid, Row } from 'react-bootstrap'
 import MessageBox from './components/MessageBox'
 import MessageForm from './components/MessageForm'
-import { Grid, Row } from 'react-bootstrap'
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import './App.css';
 import Header from './components/AppBar'
 
@@ -16,12 +16,10 @@ class App extends Component {
   componentDidMount() {
     console.log('Mounted');
     // verify connection
-    socket.on('connect', function () { console.log("socket connected"); });
+    socket.on('connect', function () { console.log("Socket connected successfully"); });
 
     socket.on('message all', (from, jsonMessage) => {
       let message = JSON.parse(jsonMessage);
-      console.log(message.id + "" + message.time + "" + message.text);
-      console.log("tring to add -> " + message);
       this.props.postMessage(message);
     });
   }
@@ -30,12 +28,12 @@ class App extends Component {
     return (
       <div>
         <Header />
-          <Grid>
-            <Row>
-              <MessageBox {...this.props} />
-              <MessageForm socket={socket} {...this.props} />
-            </Row>
-          </Grid>
+        <Grid>
+          <Row>
+            <MessageBox {...this.props} />
+            <MessageForm socket={socket} {...this.props} />
+          </Row>
+        </Grid>
       </div>
     );
   }

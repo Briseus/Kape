@@ -7,16 +7,19 @@ import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+
 
 const ChatApp = () => (
-  <MuiThemeProvider>
+  <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
     <App />
   </MuiThemeProvider>
 )
 
 ReactDOM.render(
   <Provider store={store}>
-  <ChatApp />
+    <ChatApp />
   </Provider>,
   document.getElementById('root')
 );

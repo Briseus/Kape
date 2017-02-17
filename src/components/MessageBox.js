@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Message from './Message'
+import Paper from 'material-ui/Paper'
 
 export default class MessageBox extends Component {
 
@@ -69,12 +70,13 @@ export default class MessageBox extends Component {
                 message={message} />)
         })
         return (
-            <div>
+                <Paper>
                 <ul className="messagesContainer" ref="messages">
                     {messageNodes}
                 </ul>
-            </div>
+                </Paper>
         )
     }
 
 }
+

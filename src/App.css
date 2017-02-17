@@ -7,15 +7,15 @@
   width: 100%;
   height: 100%;
   max-width: 680px;
-  font: 'Roboto'
+  font-family: Roboto, sans-serif
 }
 
 .footerPost {
   position: fixed;
   bottom: 0;
-  width: 80%;
+  width: 100%;
   max-width: 680px;
-  height: 10vh;
+  height: auto;
 }
 
 .messagesContainer {
