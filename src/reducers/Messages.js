@@ -1,12 +1,12 @@
 
 function initialState() {
     return {
-        messages: [{time: new Date().valueOf(), text: "Welcome to kape chat!", id: "Admin"}],
+        messages: [{time: new Date().valueOf(), text: "Welcome to kape chat!", id: "Admin", userId: "admin", userName: "admin"}],
         message: ""
     }
 }
 
-export function messageStore(state, action) {
+function messageStore(state, action) {
     var previousState = (state ? state : initialState())
     let tempMessages
     switch (action.type) {
@@ -19,3 +19,5 @@ export function messageStore(state, action) {
             return previousState
     }
 }
+
+export default messageStore

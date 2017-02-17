@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Panel } from 'react-bootstrap'
 import { Card, CardHeader, CardText } from 'material-ui/Card'
 
 export default class Message extends Component {
@@ -19,10 +18,10 @@ export default class Message extends Component {
             new Date(this.props.message.time).toLocaleTimeString()
         )
         const user = (
-            "Anon#" + this.props.message.id
+            this.props.message.userName + "#" + this.props.message.userId
         )
         return (
-            <li style={Object.assign({}, this.props.message.self && selfPost, !this.props.message.self && defaultStyle)}>
+            <li className="message" style={Object.assign({}, this.props.self && selfPost, !this.props.self && defaultStyle)}>
                 <Card >
                     <CardHeader
                         title={user}

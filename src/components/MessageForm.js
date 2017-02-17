@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Row, Grid, Col } from 'react-bootstrap'
+import shortid from 'shortid'
+
 export default class MessageForm extends Component {
 
     constructor(props) {
@@ -27,10 +29,11 @@ export default class MessageForm extends Component {
         e.preventDefault();
 
         const message = {
-            self: true,
             time: new Date().valueOf(),
             text: this.state.value,
-            id: new Date().valueOf()
+            id: shortid.generate(),
+            userId: this.props.user.id,
+            userName: this.props.user.name
         }
         this.sendMessage(message)
     }
@@ -43,9 +46,9 @@ export default class MessageForm extends Component {
 
     sendMessage = (message) => {
         this.resetTextField()
-        let jsonMessage = JSON.stringify(message)
         this.props.postMessage(message);
-        this.props.socket.emit('message all', 'Anon#' + message.id, jsonMessage);
+        let jsonMessage = JSON.stringify(message)
+        this.props.socket.emit('message all', this.props.user.name + '#' + this.props.user.id, jsonMessage);
     }
 
     render() {

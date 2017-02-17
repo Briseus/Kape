@@ -6,7 +6,8 @@ import * as MessageActions from './../actions/Messages'
 
 function mapStateToProps(state) {
     return {
-        messages: state.messages
+        messages: state.messageStore.messages,
+        user: state.userStore.user
     }
 }
 
