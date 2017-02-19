@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Main from './App'
 import Chat from './containers/Chat'
-import Test from './containers/Create'
+import Test from './containers/Landing'
 
 
 export default (

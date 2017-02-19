@@ -6,6 +6,8 @@ import MenuItem from 'material-ui/MenuItem'
 import { Link } from 'react-router'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import myTheme from './../Theme'
+import GithubLogo from './../github-mark.svg'
+
 export default class AppBarHeader extends Component {
 
   constructor(props) {
@@ -23,6 +25,7 @@ export default class AppBarHeader extends Component {
         <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>
           <AppBar
             onLeftIconButtonTouchTap={this.handleToggle}
+            iconElementRight={<a href="https://github.com/Briseus/Kape"><img src={GithubLogo} alt="github-logo" /></a>}
             title="Kape"
           />
         </MuiThemeProvider>

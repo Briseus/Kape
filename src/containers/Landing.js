@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Test from './../Create'
+import Landing from './../Landing'
 import * as UserActions from './../actions/User'
 
 const mapDispatchToProps = (dispatch) => {
@@ -8,4 +8,4 @@ const mapDispatchToProps = (dispatch) => {
 
 }
 
-export default connect(null, mapDispatchToProps)(Test)
+export default connect(null, mapDispatchToProps)(Landing)

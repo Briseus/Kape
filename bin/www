@@ -27,19 +27,21 @@ var server = http.createServer(app);
  * Setup socket.io
  */
 var io = require('socket.io')(server);
-io.on('connection', function(socket){
-  console.log('a user connected');
 
-  socket.on('disconnect', function(){
-    console.log('a user disconnected');
-  });
+io.on('connection', function (socket) {
+  if (process.env.development) {
+    console.log('a user connected');
 
-  socket.on('event', function(data) {
-    console.log('Got sent ' + data);
-  });
+    socket.on('disconnect', function () {
+      console.log('a user disconnected');
+    });
 
-  socket.on('message all', function(from, message) {
-    console.log(from + " " + message);
+    socket.on('event', function (data) {
+      console.log('Got sent ' + data);
+    });
+  }
+
+  socket.on('message all', function (from, message) {
     socket.broadcast.emit('message all', from, message);
   })
 });
