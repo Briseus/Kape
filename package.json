@@ -25,6 +25,8 @@
     "socket.io-client": "^1.7.2"
   },
   "scripts": {
+    "heroku-prebuild": "node ./bin/www",
+    "heroku-postbuild": "react-scripts build",
     "server": "node ./bin/www",
     "start": "react-scripts start",
     "build": "react-scripts build",
