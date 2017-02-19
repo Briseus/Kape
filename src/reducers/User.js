@@ -1,3 +1,4 @@
+import { UPDATE_USER } from './../constants/index'
 import shortid from 'shortid'
 
 function initialState() {
@@ -11,10 +12,14 @@ function initialState() {
 
 function userStore(state, action) {
     const previousState = (state ? state : initialState())
-    
+    let newUser
     switch (action.type) {
-        case 'UPDATE_USER':
-            return action.user
+        case UPDATE_USER:
+            newUser = {
+                id: previousState.user.id,
+                name: action.userName
+            }
+            return { user: newUser }
         default:
             return previousState
     }

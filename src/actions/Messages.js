@@ -1,13 +1,8 @@
-export const getMessages = (messages) => {
-    return {
-        type: 'GET_MESSAGES',
-        messages: messages
-    }
-}
+import { ADD_MESSAGE } from './../constants/index'
 
 export const postMessage = (message) => {
     return {
-        type: 'ADD_MESSAGE',
+        type: ADD_MESSAGE,
         message: message
     }
 }

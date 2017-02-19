@@ -1,25 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/App';
-import './index.css';
-import { store } from './store/index'
-import { Provider } from 'react-redux'
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+import { store } from './store/index'
+import { Provider } from 'react-redux'
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import App from './containers/App';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes'
+import muiTheme from './Theme'
 
-
-const ChatApp = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-    <App />
-  </MuiThemeProvider>
-)
+injectTapEventPlugin();
 
 ReactDOM.render(
   <Provider store={store}>
-    <ChatApp />
+    <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
+      <Router history={browserHistory} routes={routes} />
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('root')
 );

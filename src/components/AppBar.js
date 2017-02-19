@@ -2,33 +2,44 @@ import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Drawer from 'material-ui/Drawer'
-
+import MenuItem from 'material-ui/MenuItem'
+import { Link } from 'react-router'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import myTheme from './../Theme'
 export default class AppBarHeader extends Component {
 
   constructor(props) {
-        super(props);
-        this.state = { open: false };
-    }
+    super(props);
+    this.state = { open: false };
+  }
 
-    handleToggle = () => this.setState({ open: !this.state.open });
+  handleToggle = () => this.setState({ open: !this.state.open });
 
-    handleClose = () => this.setState({ open: false });
+  handleClose = () => this.setState({ open: false });
 
   render() {
     return (
       <div>
-      <MuiThemeProvider>
-      <AppBar
-        onLeftIconButtonTouchTap={this.handleToggle}
-        title="Kape"
-      />
-       </MuiThemeProvider>
-      <Drawer 
-      docked={false}
-      open={this.state.open}
-      onRequestChange={(open) => this.setState({ open })}/>
-      
-    </div>
+        <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>
+          <AppBar
+            onLeftIconButtonTouchTap={this.handleToggle}
+            title="Kape"
+          />
+        </MuiThemeProvider>
+        <Drawer
+          docked={false}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({ open })}>
+          <MenuItem
+            containerElement={<Link to={"/"} />}
+            onTouchTap={this.handleClose}
+            primaryText={"Home"} />
+          <MenuItem
+            containerElement={<Link to={"/chat"} />}
+            onTouchTap={this.handleClose}
+            primaryText={"Chat"} />
+        </Drawer>
+      </div>
     )
   }
 }

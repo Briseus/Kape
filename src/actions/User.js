@@ -1,6 +1,8 @@
-export const updateUser = (user) => {
+import { UPDATE_USER } from './../constants/index'
+
+export const updateUser = (userName) => {
     return {
-        type: 'UPDATE_USER',
-        user: user
+        type: UPDATE_USER ,
+        userName: userName
     }
 }
