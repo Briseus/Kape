@@ -3,8 +3,8 @@ import io from 'socket.io-client'
 import MessageBox from './components/MessageBox'
 import MessageForm from './components/MessageForm'
 
-const socket = io.connect('localhost:3000', { reconnect: true });
-//const socket = io.connect("/")
+
+const socket = io.connect("/")
 
 export default class Chat extends Component {
     

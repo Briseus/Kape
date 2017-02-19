@@ -33,6 +33,7 @@
   "engines": {
     "node": "7.5.0"
   },
+  "proxy": "http://localhost:3000",
   "description": "An instant messaging app",
   "repository": "git@github.com:Briseus/Kape.git",
   "author": "Ville Aaltonen <ville.v.aaltonen@gmail.com>",
