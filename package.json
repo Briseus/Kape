@@ -25,12 +25,18 @@
     "socket.io-client": "^1.7.2"
   },
   "scripts": {
-    "heroku-prebuild": "node ./bin/www",
     "heroku-postbuild": "react-scripts build",
     "server": "node ./bin/www",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "engines": {
+    "node": "7.5.0"
+  },
+  "description": "An instant messaging app",
+  "repository": "git@github.com:Briseus/Kape.git",
+  "author": "Ville Aaltonen <ville.v.aaltonen@gmail.com>",
+  "license": "MIT"
 }
