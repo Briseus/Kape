@@ -2,10 +2,8 @@
   "name": "kape",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.9.0"
-  },
   "dependencies": {
+    "react-scripts": "0.9.0",
     "bootstrap": "3",
     "debug": "^2.6.1",
     "express": "^4.14.1",
@@ -25,7 +23,7 @@
     "socket.io-client": "^1.7.2"
   },
   "scripts": {
-    "heroku-postbuild": "yarn install --dev && yarn install && yarn run build",
+    "heroku-postbuild": "yarn install --dev && yarn install && yarn build",
     "server": "node ./bin/www",
     "start": "react-scripts start",
     "build": "react-scripts build",
