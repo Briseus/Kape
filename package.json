@@ -23,7 +23,7 @@
     "socket.io-client": "^1.7.2"
   },
   "scripts": {
-    "heroku-postbuild": "yarn install --dev && yarn install && yarn build",
+    "heroku-postbuild": "yarn build",
     "server": "node ./bin/www",
     "start": "react-scripts start",
     "build": "react-scripts build",
