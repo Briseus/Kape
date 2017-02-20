@@ -7,15 +7,26 @@ import MessageForm from './components/MessageForm'
 const socket = io.connect("/")
 
 export default class Chat extends Component {
-    
+
     componentDidMount() {
         // verify connection
-        socket.on('connect', function () { console.log("Socket connected successfully"); });
+        socket.on('connect', function () {
+            console.log("Socket connected successfully")
+        });
 
-        socket.on('message all', (from, jsonMessage) => {
+        let msgType
+        if (this.props.params.room !== undefined) {
+            socket.emit('room', this.props.params.room)
+            msgType = "message"
+        } else {
+            msgType = "message all"
+        }
+
+        socket.on(msgType, (from, jsonMessage) => {
             let message = JSON.parse(jsonMessage);
             this.props.postMessage(message);
         });
+
     }
 
     render() {

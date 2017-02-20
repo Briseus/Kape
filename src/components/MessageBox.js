@@ -56,7 +56,7 @@ export default class MessageBox extends Component {
     }
 
     render() {
-        console.log(this.props)
+
         const messageNodes = this.state.messages.map((message) => {
             if (message.userId === this.props.user.id) {
                 return (<Message

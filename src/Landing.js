@@ -17,7 +17,7 @@ export default class Test extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        if (this.state.value != 0) {
+        if (this.state.value.length !== 0) {
             this.props.updateUser(this.state.value)
         }
 

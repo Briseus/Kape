@@ -49,13 +49,25 @@ export default class MessageForm extends Component {
         this.resetTextField()
         this.props.postMessage(message);
         let jsonMessage = JSON.stringify(message)
-        this.props.socket.emit('message all', this.props.user.name + '#' + this.props.user.id, jsonMessage);
+        let msgType
+        
+        //got a /chat/someroomname route
+        if (this.props.params.room !== undefined) {
+            console.log("got param " + this.props.params.room)
+            msgType = "message"
+        } else {
+            console.log("did NOT get some params")
+            msgType = "message all"
+        }
+
+        this.props.socket.emit(msgType, this.props.user.name + '#' + this.props.user.id, jsonMessage, this.props.params.room)
+
+
     }
 
     render() {
         return (
-           
-                 <Paper className="footerPost">
+            <Paper className="footerPost">
                 <form onSubmit={this.onSubmit}>
                     <Row >
                         <Grid>
@@ -72,9 +84,9 @@ export default class MessageForm extends Component {
                         </Grid>
                     </Row>
                 </form>
-                </Paper>
-            
-            
+            </Paper>
+
+
         )
     }
 
