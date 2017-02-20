@@ -50,7 +50,7 @@ export default class MessageForm extends Component {
         this.props.postMessage(message);
         let jsonMessage = JSON.stringify(message)
         let msgType
-        
+
         //got a /chat/someroomname route
         if (this.props.params.room !== undefined) {
             console.log("got param " + this.props.params.room)
@@ -59,7 +59,6 @@ export default class MessageForm extends Component {
             console.log("did NOT get some params")
             msgType = "message all"
         }
-
         this.props.socket.emit(msgType, this.props.user.name + '#' + this.props.user.id, jsonMessage, this.props.params.room)
 
 
