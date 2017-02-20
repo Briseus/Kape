@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import MessageBox from './components/MessageBox'
 import MessageForm from './components/MessageForm'
-
-
+import { Grid, Row } from 'react-bootstrap'
 
 export default class Chat extends Component {
 
@@ -25,10 +24,12 @@ export default class Chat extends Component {
     }
     render() {
         return (
-            <div>
-                <MessageBox {...this.props} />
-                <MessageForm  {...this.props} />
-            </div>
+            <Grid>
+                <Row>
+                    <MessageBox {...this.props} />
+                    <MessageForm  {...this.props} />
+                </Row>
+            </Grid>
         )
     }
 }

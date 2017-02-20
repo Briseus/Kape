@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import Channel from './Channel'
+import Subheader from 'material-ui/Subheader'
+import {List, ListItem} from 'material-ui/List'
+import {Link} from 'react-router'
+import Divider from 'material-ui/Divider'
+import Avatar from 'material-ui/Avatar'
+import Theme from './../Theme'
 
 export default class ChannelList extends Component {
 
@@ -27,13 +32,32 @@ export default class ChannelList extends Component {
             return null
         }
         const channelNodes = this.state.channels.map((channel) => {
+            const firstLetter = channel.name.charAt(0).toUpperCase()
             return (
-                <Channel key={channel.name} channel={channel} />
+                <div  key={channel.name}>
+                <ListItem
+                leftAvatar={
+                    <Avatar
+                    color={Theme.palette.alternateTextColor}
+                    backgroundColor={Theme.palette.accent1Color}>
+                    {firstLetter}
+                    </Avatar>
+                }
+                insetChildren={true}
+                containerElement={<Link to={"/chat/"+channel.name} />}
+               
+                primaryText={channel.name}/>
+                <Divider inset={true} />
+                </div>
             )
         })
+
         return (
             <div>
+                <List>
+                    <Subheader> Channels </Subheader>
                 {channelNodes}
+                </List>
             </div>
         )
     }

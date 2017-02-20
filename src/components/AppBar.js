@@ -40,7 +40,7 @@ export default class AppBarHeader extends Component {
           <MenuItem
             containerElement={<Link to={"/chat"} />}
             onTouchTap={this.handleClose}
-            primaryText={"Chat"} />
+            primaryText={"Channels"} />
         </Drawer>
       </div>
     )

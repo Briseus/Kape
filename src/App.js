@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Grid, Row } from 'react-bootstrap'
 import io from 'socket.io-client'
 import './App.css'
 import Header from './components/AppBar'
@@ -32,12 +31,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <Grid>
-          <Row>
-            {React.Children.map(this.props.children, (child) => React.cloneElement(child, { socket: socket, channels: this.state.channels }))}
-
-          </Row>
-        </Grid>
+        {React.Children.map(this.props.children, (child) => React.cloneElement(child, { socket: socket, channels: this.state.channels }))}
       </div>
     );
   }
