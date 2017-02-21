@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper'
 
 export default class MessageBox extends Component {
 
-    static scrollAtBottom = true;
+    static scrollAtBottom = true
 
     constructor(props) {
         super(props)
@@ -56,26 +56,25 @@ export default class MessageBox extends Component {
     }
 
     render() {
-
         const messageNodes = this.state.messages.map((message) => {
             if (message.userId === this.props.user.id) {
                 return (<Message
-                self={true}
-                key={message.id}
-                user={this.props.user}
-                message={message} />)
+                    self={true}
+                    key={message.id}
+                    user={this.props.user}
+                    message={message} />)
             }
-            return (<Message 
+            return (<Message
                 key={message.id}
                 user={this.props.user}
                 message={message} />)
         })
         return (
-                <Paper>
+            <Paper>
                 <ul className="messagesContainer" ref="messages">
                     {messageNodes}
                 </ul>
-                </Paper>
+            </Paper>
         )
     }
 

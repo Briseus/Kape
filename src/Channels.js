@@ -5,10 +5,6 @@ import { Grid, Row } from 'react-bootstrap'
 
 export default class Channels extends Component {
 
-    componentDidMount() {
-        this.props.socket.emit('channels', )
-    }
-
     render() {
         return (
             <Grid>

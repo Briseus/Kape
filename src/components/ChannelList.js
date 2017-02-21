@@ -29,12 +29,12 @@ export default class ChannelList extends Component {
 
     render() {
         if (this.state.channels === undefined) {
-            return null
+            return (<div></div>)
         }
         const channelNodes = this.state.channels.map((channel) => {
-            const firstLetter = channel.name.charAt(0).toUpperCase()
+            const firstLetter = channel.charAt(0).toUpperCase()
             return (
-                <div  key={channel.name}>
+                <div  key={channel}>
                 <ListItem
                 leftAvatar={
                     <Avatar
@@ -44,9 +44,8 @@ export default class ChannelList extends Component {
                     </Avatar>
                 }
                 insetChildren={true}
-                containerElement={<Link to={"/chat/"+channel.name} />}
-               
-                primaryText={channel.name}/>
+                containerElement={<Link to={"/chat/"+channel} />}
+                primaryText={channel}/>
                 <Divider inset={true} />
                 </div>
             )

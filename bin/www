@@ -26,14 +26,13 @@ var server = http.createServer(app);
 /**
  * Setup socket.io
  */
-var rooms = [{ name: "general" }];
+var rooms = ['general'];
 
 var io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
 
   console.log('a user connected');
-  socket.join('general');
 
   socket.on('disconnect', function () {
     console.log('a user disconnected');
@@ -41,25 +40,26 @@ io.on('connection', function (socket) {
 
 
   socket.on('createChannel', function (channel) {
-    var newChannel = {
-      name: channel
-    }
-    rooms.push(newChannel);
+    rooms.push(channel);
     io.sockets.emit('channels', rooms)
+  });
+
+// send socket what room you want to join in
+  socket.on('switchChannel', function (room) {
+    console.log("switching from " + socket.room);
+    socket.leave(socket.room);
+    socket.join(room);
   });
 
   // send socket what room you want to join in
   socket.on('joinChannel', function (room) {
+    socket.room = room;
     socket.join(room);
-  });
-
-  socket.on('message all', function (from, message) {
-    socket.broadcast.emit('message all', from, message);
   });
 
   socket.on('message', function (from, message, room) {
     console.log("got room " + room + " from " + from + " msg " + message);
-    socket.in(room).emit('message', from, message);
+    socket.to(room).emit('message', from, message, room);
   });
 
   socket.on('channels', function () {

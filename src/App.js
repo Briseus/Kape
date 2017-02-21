@@ -6,7 +6,6 @@ import Header from './components/AppBar'
 const socket = io.connect()
 
 export default class App extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -15,17 +14,22 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    // verify connection
-    socket.on('connect', function () {
-      console.log("Socket connected successfully")
-    })
+        // verify connection
+        socket.on('connect', () => {
+            console.log("Socket connected successfully")
+            socket.emit('channels', )
 
-    socket.on('channels', (channels) => {
+            socket.on('channels', (channels) => {
+                this.updateChannels(channels)
+            })
+        })
+    }
+
+    updateChannels = (channels) => {
       this.setState({
         channels: channels
       })
-    })
-  }
+    }
 
   render() {
     return (

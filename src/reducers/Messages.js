@@ -1,4 +1,4 @@
-import { ADD_MESSAGE } from './../constants/index'
+import { ADD_MESSAGE, CLEAR_MESSAGES } from './../constants/index'
 
 function initialState() {
     return {
@@ -13,6 +13,9 @@ function messageStore(state, action) {
         case ADD_MESSAGE:
             tempMessages = state.messages.concat(action.message)
             return { messages: tempMessages }
+        case CLEAR_MESSAGES:
+            tempMessages = []
+            return { messages: tempMessages}
         default:
             return previousState
     }

@@ -22,18 +22,13 @@ export default class ChannelForm extends Component {
         e.preventDefault()
         let found = false
         // check if already exitsts
-        this.props.channels.forEach((channel) => {
-            if (channel.name === this.state.value) {
-                found = true
-            }
-        })
-        if (!found) {
+        if (!this.props.channels.includes(this.state.value)) {
             console.log("Creating room " + this.state.value)
             this.props.socket.emit('createChannel', this.state.value)
-        } else {
+        } else  {
             console.log("Or not")
         }
-        found = false
+
 
     }
 
@@ -49,7 +44,7 @@ export default class ChannelForm extends Component {
                                 value={this.state.value}
                                 onChange={this.handleChange} />
                         </Col>
-                        <Col xs={12} md={3} style={{padding: 25, textAlign: 'center'}}>
+                        <Col xs={12} md={3} style={{ padding: 25, textAlign: 'center' }}>
                             <RaisedButton type="submit" label="Create" secondary={true} />
                         </Col>
                     </form>

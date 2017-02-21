@@ -1,33 +1,52 @@
 import React, { Component } from 'react'
+import io from 'socket.io-client'
 import MessageBox from './components/MessageBox'
 import MessageForm from './components/MessageForm'
 import { Grid, Row } from 'react-bootstrap'
 
+var socket
+
 export default class Chat extends Component {
 
-    componentDidMount() {
-        //tell socket to join room
-        let msgType
-        if (this.props.params.room !== undefined) {
-            msgType = "message"
-        } else {
-            msgType = "message all"
+    constructor(props) {
+        super(props)
+        this.state = {
+            messages: []
         }
-
-        this.props.socket.on(msgType, (from, jsonMessage) => {
-            let message = JSON.parse(jsonMessage)
-            this.props.postMessage(message)
-        })
-        console.log(this.props.params)
-        this.props.socket.emit('joinChannel', this.props.params.room)
-
     }
+
+    componentDidMount() {
+        socket = io.connect()
+        socket.on('connect', () => {
+            console.log("Chat socket connected successfully")
+            socket.emit('joinChannel', this.props.params.room)
+            socket.on("message", (from, jsonMessage, room) => {
+                const message = JSON.parse(jsonMessage)
+                if (this.props.params.room === room) {
+                    this.addMessage(message)
+                }
+            })
+
+        })
+    }
+    componentWillUnmount() {
+        socket.disconnect()
+    }
+    addMessage = (message) => {
+        console.log("Adding message")
+        if (socket.connected) {
+            this.setState({
+                messages: this.state.messages.concat(message)
+            })
+        }
+    }
+
     render() {
         return (
             <Grid>
                 <Row>
-                    <MessageBox {...this.props} />
-                    <MessageForm  {...this.props} />
+                    <MessageBox messages={this.state.messages} {...this.props} />
+                    <MessageForm socket={socket} {...this.props} />
                 </Row>
             </Grid>
         )
