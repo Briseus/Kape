@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField'
 import { Grid, Row, Col } from 'react-bootstrap'
 import logo from './logo.svg'
 
-export default class Test extends Component {
+export default class Landing extends Component {
 
     constructor(props) {
         super(props)
@@ -32,15 +32,15 @@ export default class Test extends Component {
         return (
             <div>
                 <Grid style={{ padding: 50 }}>
-                    <Row style={{ minHeight: '30vh', textAlign: 'center' }}>
-                        <img src={logo} alt="main logo" style={{ maxHeight: '20vh', paddingTop: 25 }} />
+                    <Row style={{ minHeight: '30%', textAlign: 'center' }}>
+                        <img src={logo} alt="main logo" style={{ maxHeight: 200, paddingTop: 25 }} />
                         <h1> Kape chat </h1>
                         <h3> An instant messaging app build with React, Socket.io and Express.js. </h3>
                     </Row>
                 </Grid>
-                <Grid>
-                    <Row style={{ minHeight: '20vh', textAlign: 'center' }}>
-                        <h3> To Get started </h3>
+                <Grid >
+                    <Row style={{ minHeight: '20%', textAlign: 'center' }}>
+                        <h1> To Get started </h1>
                         <Col xs={12}>
                             <TextField
                                 inputStyle={{ textAlign: 'center' }}
@@ -53,7 +53,7 @@ export default class Test extends Component {
                             <h4> Or dont it's cool </h4>
                         </Col>
                     </Row>
-                    <Row style={{ textAlign: 'center', padding: 25 }}>
+                    <Row style={{ textAlign: 'center',  marginTop: 15, paddingBottom: 50 }}>
                         <RaisedButton
                             containerElement={<Link to={"/chat"} />}
                             onTouchTap={this.onSubmit}
