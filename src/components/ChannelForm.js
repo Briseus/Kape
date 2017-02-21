@@ -20,7 +20,6 @@ export default class ChannelForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        let found = false
         // check if already exitsts
         if (!this.props.channels.includes(this.state.value)) {
             console.log("Creating room " + this.state.value)
@@ -28,8 +27,6 @@ export default class ChannelForm extends Component {
         } else  {
             console.log("Or not")
         }
-
-
     }
 
     render() {

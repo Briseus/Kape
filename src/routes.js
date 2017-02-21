@@ -10,7 +10,7 @@ export default (
         <Route path="/" component={Main} history={browserHistory}>
             <IndexRoute component={LandingPage} />
             <Route path="chat" component={Channels} />
-            <Route path="chat/:room" component={Chat}/>
+            <Route path="chat/:room" component={Chat} />
         </Route>
     </Router>
 )

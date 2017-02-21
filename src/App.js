@@ -14,22 +14,22 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-        // verify connection
-        socket.on('connect', () => {
-            console.log("Socket connected successfully")
-            socket.emit('channels', )
+    // verify connection
+    socket.on('connect', () => {
+      console.log("Socket connected successfully")
+      socket.emit('channels', )
 
-            socket.on('channels', (channels) => {
-                this.updateChannels(channels)
-            })
-        })
-    }
-
-    updateChannels = (channels) => {
-      this.setState({
-        channels: channels
+      socket.on('channels', (channels) => {
+        this.updateChannels(channels)
       })
-    }
+    })
+  }
+
+  updateChannels = (channels) => {
+    this.setState({
+      channels: channels
+    })
+  }
 
   render() {
     return (

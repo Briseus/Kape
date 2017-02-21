@@ -43,8 +43,8 @@ export default class Test extends Component {
                         <h3> To Get started </h3>
                         <Col xs={12}>
                             <TextField
-                            inputStyle={{textAlign: 'center'}}
-                            hintStyle={{textAlign: 'center', width: '250px'}}
+                                inputStyle={{ textAlign: 'center' }}
+                                hintStyle={{ textAlign: 'center', width: '250px' }}
                                 hintText={"Choose a nickname"}
                                 value={this.state.value}
                                 onChange={this.handleChange} />

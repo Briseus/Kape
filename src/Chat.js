@@ -29,9 +29,11 @@ export default class Chat extends Component {
 
         })
     }
+
     componentWillUnmount() {
         socket.disconnect()
     }
+    
     addMessage = (message) => {
         console.log("Adding message")
         if (socket.connected) {

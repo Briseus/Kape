@@ -1,7 +1,7 @@
-import {fade} from 'material-ui/utils/colorManipulator';
+import { fade } from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
 import {
-    teal500, teal700, deepOrangeA200, grey100, grey300, grey400, grey500, white, darkBlack, fullBlack,
+  teal500, teal700, deepOrangeA200, grey100, grey300, grey400, grey500, white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors'
 
 export default {

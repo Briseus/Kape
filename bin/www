@@ -26,7 +26,7 @@ var server = http.createServer(app);
 /**
  * Setup socket.io
  */
-var rooms = ['general'];
+var channels = ['general'];
 
 var io = require('socket.io')(server);
 
@@ -38,32 +38,37 @@ io.on('connection', function (socket) {
     console.log('a user disconnected');
   });
 
-
+  /**
+   *  Creates a new channel
+   */
   socket.on('createChannel', function (channel) {
-    rooms.push(channel);
-    io.sockets.emit('channels', rooms)
+    channels.push(channel);
+    // update all with updated channel list
+    io.sockets.emit('channels', channels)
   });
 
-// send socket what room you want to join in
-  socket.on('switchChannel', function (room) {
-    console.log("switching from " + socket.room);
-    socket.leave(socket.room);
-    socket.join(room);
+  /**
+   * Join channel when emitting here
+   */
+  socket.on('joinChannel', function (channel) {
+    socket.room = channel;
+    socket.join(channel);
   });
 
-  // send socket what room you want to join in
-  socket.on('joinChannel', function (room) {
-    socket.room = room;
-    socket.join(room);
+
+  /**
+   * Forwards messages
+   */
+  socket.on('message', function (from, message, channel) {
+    console.log("Got msg " + message + " from " + from + " in " + channel);
+    socket.to(channel).emit('message', from, message, channel);
   });
 
-  socket.on('message', function (from, message, room) {
-    console.log("got room " + room + " from " + from + " msg " + message);
-    socket.to(room).emit('message', from, message, room);
-  });
-
+  /**
+   * If called return all current channels
+   */
   socket.on('channels', function () {
-    socket.emit('channels', rooms);
+    socket.emit('channels', channels);
   });
 
 });

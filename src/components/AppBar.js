@@ -11,8 +11,10 @@ import GithubLogo from './../github-mark.svg'
 export default class AppBarHeader extends Component {
 
   constructor(props) {
-    super(props);
-    this.state = { open: false };
+    super(props)
+    this.state = {
+      open: false
+    }
   }
 
   handleToggle = () => this.setState({ open: !this.state.open });

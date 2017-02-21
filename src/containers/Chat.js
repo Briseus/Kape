@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Chat from './../Chat'
-import * as MessageActions from './../actions/Messages'
 
 function mapStateToProps(state) {
     return {
@@ -9,8 +8,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(MessageActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Chat)
+export default connect(mapStateToProps, null)(Chat)

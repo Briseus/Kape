@@ -36,6 +36,7 @@ export default class MessageForm extends Component {
             userId: this.props.user.id,
             userName: this.props.user.name
         }
+        
         this.sendMessage(message)
     }
 
@@ -47,21 +48,8 @@ export default class MessageForm extends Component {
 
     sendMessage = (message) => {
         this.resetTextField()
-        this.props.postMessage(message);
         let jsonMessage = JSON.stringify(message)
-        let msgType
-
-        //got a /chat/someroomname route
-        if (this.props.params.room !== undefined) {
-            console.log("got param " + this.props.params.room)
-            msgType = "message"
-        } else {
-            console.log("did NOT get some params")
-            msgType = "message all"
-        }
-        this.props.socket.emit(msgType, this.props.user.name + '#' + this.props.user.id, jsonMessage, this.props.params.room)
-
-
+        this.props.socket.emit("message", this.props.user.name + '#' + this.props.user.id, jsonMessage, this.props.params.room)
     }
 
     render() {
