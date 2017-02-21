@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, CardHeader, CardText } from 'material-ui/Card'
+import Linkify from 'linkifyjs/react'
 
 export default class Message extends Component {
 
@@ -28,7 +29,9 @@ export default class Message extends Component {
                         subtitle={time}
                     />
                     <CardText>
+                        <Linkify >
                         {this.props.message.text}
+                        </Linkify>
                     </CardText>
                 </Card>
             </li>
