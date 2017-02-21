@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import Chat from './../Chat'
 
 function mapStateToProps(state) {
