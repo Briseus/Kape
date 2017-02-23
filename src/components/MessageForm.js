@@ -10,14 +10,23 @@ export default class MessageForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: ""
+            value: "",
+            errorText: ""
         }
     }
 
     getValidationState = () => {
-        const length = this.state.value.lenght
-        if (length <= 0) return 'error'
-        else if (length > 0) return 'success'
+        if (this.state.value <= 0) {
+            this.setState({
+                errorText: "Forgot to type the message?"
+            })
+            return false
+        } else {
+            this.setState({
+                errorText: ""
+            })
+            return true
+        }
     }
 
     handleChange = (e) => {
@@ -28,16 +37,17 @@ export default class MessageForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-
-        const message = {
-            time: new Date().valueOf(),
-            text: this.state.value,
-            id: shortid.generate(),
-            userId: this.props.user.id,
-            userName: this.props.user.name
+        if (this.getValidationState() === true) {
+            const message = {
+                time: new Date().valueOf(),
+                text: this.state.value,
+                id: shortid.generate(),
+                userId: this.props.user.id,
+                userName: this.props.user.name
+            }
+            this.sendMessage(message)
         }
-        
-        this.sendMessage(message)
+
     }
 
     resetTextField = () => {
@@ -62,6 +72,7 @@ export default class MessageForm extends Component {
                                 <TextField
                                     fullWidth={true}
                                     floatingLabelText="Type here to post"
+                                    errorText={this.state.errorText}
                                     value={this.state.value}
                                     onChange={this.handleChange} />
                             </Col>

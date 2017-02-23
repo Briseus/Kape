@@ -8,7 +8,8 @@ export default class ChannelForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: ""
+            value: "",
+            errorText: ""
         }
     }
 
@@ -21,11 +22,34 @@ export default class ChannelForm extends Component {
     onSubmit = (e) => {
         e.preventDefault()
         // check if already exitsts
-        if (!this.props.channels.includes(this.state.value)) {
+        if (this.validChannel() === true) {
             console.log("Creating room " + this.state.value)
             this.props.socket.emit('createChannel', this.state.value)
-        } else  {
+            this.setState({
+                value: ""
+            })
+        } else {
             console.log("Or not")
+        }
+    }
+
+    validChannel = () => {
+
+        if (this.state.value.length <= 3) {
+            this.setState({
+                errorText: "Channel name has to be atleast 3 characters"
+            })
+            return false
+        } else if (this.props.channels.includes(this.state.value)) {
+            this.setState({
+                errorText: "Channel already exists"
+            })
+            return false
+        } else {
+            this.setState({
+                errorText: ""
+            })
+            return true
         }
     }
 
@@ -38,6 +62,7 @@ export default class ChannelForm extends Component {
                             <TextField
                                 fullWidth={true}
                                 floatingLabelText="Create a channel"
+                                errorText={this.state.errorText}
                                 value={this.state.value}
                                 onChange={this.handleChange} />
                         </Col>
@@ -47,7 +72,6 @@ export default class ChannelForm extends Component {
                     </form>
                 </Row>
             </Grid>
-
         )
     }
 

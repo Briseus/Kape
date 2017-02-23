@@ -15,6 +15,7 @@ function userStore(state, action) {
     let newUser
     switch (action.type) {
         case UPDATE_USER:
+            console.log(action.userName)
             newUser = {
                 id: previousState.user.id,
                 name: action.userName

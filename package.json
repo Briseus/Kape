@@ -34,7 +34,8 @@
     "node": "7.5.0"
   },
   "proxy": "http://localhost:3000",
-  "description": "An instant messaging app",
+  "description": "An instant messaging app demo",
+  "homepage": "https://kapechat.herokuapp.com/",
   "repository": "git@github.com:Briseus/Kape.git",
   "author": "Ville Aaltonen <ville.v.aaltonen@gmail.com>",
   "license": "MIT"
