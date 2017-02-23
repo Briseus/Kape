@@ -956,10 +956,6 @@ base64id@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/base64id/-/base64id-1.0.0.tgz#47688cb99bb6804f0e06d3e763b1c32e57d8e6b6"
 
-basic-auth@~1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-1.1.0.tgz#45221ee429f7ee1e5035be3f51533f1cdfd29884"
-
 batch@0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.5.3.tgz#3f3414f380321743bfc1042f9a83ff1d5824d464"
@@ -1661,7 +1657,7 @@ debug@2.3.3:
   dependencies:
     ms "0.7.2"
 
-debug@2.6.1, debug@^2.1.0, debug@^2.1.1, debug@^2.2.0, debug@^2.6.1:
+debug@^2.1.0, debug@^2.1.1, debug@^2.2.0, debug@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
   dependencies:
@@ -3788,16 +3784,6 @@ minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0:
   dependencies:
     minimist "0.0.8"
 
-morgan@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.8.1.tgz#f93023d3887bd27b78dfd6023cea7892ee27a4b1"
-  dependencies:
-    basic-auth "~1.1.0"
-    debug "2.6.1"
-    depd "~1.1.0"
-    on-finished "~2.3.0"
-    on-headers "~1.0.1"
-
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -5118,15 +5104,6 @@ send@0.14.2:
     on-finished "~2.3.0"
     range-parser "~1.2.0"
     statuses "~1.3.1"
-
-serve-favicon@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/serve-favicon/-/serve-favicon-2.3.2.tgz#dd419e268de012ab72b319d337f2105013f9381f"
-  dependencies:
-    etag "~1.7.0"
-    fresh "0.3.0"
-    ms "0.7.2"
-    parseurl "~1.3.1"
 
 serve-index@^1.7.2:
   version "1.8.0"
