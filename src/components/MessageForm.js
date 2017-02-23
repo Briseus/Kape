@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { Row, Grid, Col } from 'react-bootstrap'
 import shortid from 'shortid'
 import Paper from 'material-ui/Paper'
+import './../App.css'
 
 export default class MessageForm extends Component {
 
@@ -64,8 +65,9 @@ export default class MessageForm extends Component {
 
     render() {
         return (
+            <div className="footer">
             <Paper className="footerPost">
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit}  autoComplete="off">
                     <Row >
                         <Grid>
                             <Col xs={8} md={10} >
@@ -83,6 +85,7 @@ export default class MessageForm extends Component {
                     </Row>
                 </form>
             </Paper>
+            </div>
 
 
         )

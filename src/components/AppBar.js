@@ -7,6 +7,7 @@ import { Link } from 'react-router'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import myTheme from './../Theme'
 import GithubLogo from './../github-mark.svg'
+import './../App.css'
 
 export default class AppBarHeader extends Component {
 
@@ -23,7 +24,7 @@ export default class AppBarHeader extends Component {
 
   render() {
     return (
-      <div>
+      <div className="header">
         <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>
           <AppBar
             onLeftIconButtonTouchTap={this.handleToggle}

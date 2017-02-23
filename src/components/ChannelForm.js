@@ -35,9 +35,9 @@ export default class ChannelForm extends Component {
 
     validChannel = () => {
 
-        if (this.state.value.length <= 3) {
+        if (this.state.value.length < 3) {
             this.setState({
-                errorText: "Channel name has to be atleast 3 characters"
+                errorText: "Channel name has to be atleast 3 characters long"
             })
             return false
         } else if (this.props.channels.includes(this.state.value)) {
@@ -57,7 +57,7 @@ export default class ChannelForm extends Component {
         return (
             <Grid>
                 <Row>
-                    <form onSubmit={this.onSubmit}>
+                    <form onSubmit={this.onSubmit} autoComplete="off">
                         <Col xs={12} md={9}>
                             <TextField
                                 fullWidth={true}
