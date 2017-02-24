@@ -7,5 +7,5 @@ module.exports = {
   ],
   dontCacheBustUrlsMatching: /\.\w{8}\./,
   swFilePath: 'build/service-worker.js',
-  navigateFallback: 'build/index.html'
+  navigateFallback: 'index.html'
 };
