@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import { Grid, Row, Col } from 'react-bootstrap'
 
 export default class ChannelForm extends Component {
 
@@ -55,23 +54,21 @@ export default class ChannelForm extends Component {
 
     render() {
         return (
-            <Grid>
-                <Row>
-                    <form onSubmit={this.onSubmit} autoComplete="off">
-                        <Col xs={12} md={9}>
-                            <TextField
-                                fullWidth={true}
-                                floatingLabelText="Create a channel"
-                                errorText={this.state.errorText}
-                                value={this.state.value}
-                                onChange={this.handleChange} />
-                        </Col>
-                        <Col xs={12} md={3} style={{ padding: 25, textAlign: 'center' }}>
-                            <RaisedButton type="submit" label="Create" secondary={true} />
-                        </Col>
-                    </form>
-                </Row>
-            </Grid>
+            <div>
+                <form onSubmit={this.onSubmit} autoComplete="off">
+                    <div className="channelForm">
+                    <TextField
+                        fullWidth={true}
+                        floatingLabelText="Create a channel"
+                        errorText={this.state.errorText}
+                        value={this.state.value}
+                        onChange={this.handleChange} />
+                        <div className="button">
+                    <RaisedButton type="submit" label="Create" secondary={true} />
+                    </div>
+                    </div>
+                </form>
+            </div>
         )
     }
 

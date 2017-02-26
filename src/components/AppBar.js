@@ -24,11 +24,11 @@ export default class AppBarHeader extends Component {
 
   render() {
     return (
-      <div className="header">
+      <div>
         <MuiThemeProvider muiTheme={getMuiTheme(myTheme)}>
           <AppBar
             onLeftIconButtonTouchTap={this.handleToggle}
-            iconElementRight={<div><a href="https://github.com/Briseus/Kape"><img src={GithubLogo} alt="github-logo" style={{height: '48px', width: '48px', padding: 10}} /></a></div>}
+            iconElementRight={<div ><a href="https://github.com/Briseus/Kape"><img src={GithubLogo} alt="github-logo"/></a></div>}
             title="Kape"
           />
         </MuiThemeProvider>

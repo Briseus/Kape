@@ -51,12 +51,10 @@ export default class ChannelList extends Component {
             )
         })
         return (
-            <div>
                 <List>
                     <Subheader> Channels </Subheader>
                     {channelNodes}
                 </List>
-            </div>
         )
     }
 

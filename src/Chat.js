@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import MessageBox from './components/MessageBox'
 import MessageForm from './components/MessageForm'
-import { Grid, Row } from 'react-bootstrap'
+import Paper from 'material-ui/Paper'
 
 var socket
 
@@ -33,7 +33,7 @@ export default class Chat extends Component {
     componentWillUnmount() {
         socket.disconnect()
     }
-    
+
     addMessage = (message) => {
         console.log("Adding message")
         if (socket.connected) {
@@ -45,12 +45,12 @@ export default class Chat extends Component {
 
     render() {
         return (
-            <Grid>
-                <Row>
-                    <MessageBox messages={this.state.messages} {...this.props} />
-                    <MessageForm socket={socket} {...this.props} />
-                </Row>
-            </Grid>
+            <div className="container chat">
+            <Paper>
+                <MessageBox messages={this.state.messages} {...this.props} />
+                <MessageForm socket={socket} {...this.props} />
+            </Paper>
+            </div>
         )
     }
 }

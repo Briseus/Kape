@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import { Link } from 'react-router'
 import TextField from 'material-ui/TextField'
-import { Grid, Row, Col } from 'react-bootstrap'
 import logo from './logo.svg'
+import './App.css'
+import Theme from './Theme'
 
 export default class Landing extends Component {
 
@@ -48,39 +49,30 @@ export default class Landing extends Component {
 
     render() {
         return (
-            <div>
-                <Grid style={{ padding: 50 }}>
-                    <Row style={{ minHeight: 300, textAlign: 'center' }}>
-                        <img src={logo} alt="main logo" style={{ maxHeight: 200, paddingTop: 25 }} />
-                        <h1> Kape chat </h1>
-                        <h3> An instant messaging app build with React, Socket.io and Express.js. </h3>
-                    </Row>
-                </Grid>
-                <Grid >
-                    <Row style={{ minHeight: 200, textAlign: 'center' }}>
-                        <h1> To Get started </h1>
-                        <Col xs={12}>
-                            <TextField
-                                inputStyle={{ textAlign: 'center' }}
-                                hintStyle={{ textAlign: 'center', width: '250px' }}
-                                hintText={"Choose a nickname"}
-                                errorText={this.state.errorText}
-                                value={this.state.value}
-                                onChange={this.handleChange} />
-                        </Col>
-                        <Col xs={12} style={{ marginTop: 15 }}>
-                            <h4> Or dont it's cool </h4>
-                        </Col>
-                    </Row>
-                    <Row style={{ textAlign: 'center', marginTop: 15, paddingBottom: 50 }}>
+            <div className="container block">
+                <img src={logo} alt="main logo" className="logo" />
+                <h1> Kape chat </h1>
+                <span style={{fontSize: 22, color: Theme.palette.primary1Color}}> An instant messaging app build with React, Socket.io and Express.js. </span>
+                <div className="block">
+                    <span style={{fontSize: 20}}> To Get started... </span>
+                    <div className="button">
+                        <TextField
+                            inputStyle={{ textAlign: 'center' }}
+                            hintStyle={{ textAlign: 'center', width: '250px' }}
+                            hintText={"Choose a nickname"}
+                            errorText={this.state.errorText}
+                            value={this.state.value}
+                            onChange={this.handleChange} />
+                    </div>
+                    <span style={{fontSize: 18}}> Or dont it's cool </span>
+                    <div className="button">
                         <RaisedButton
-
                             onTouchTap={this.onSubmit}
                             containerElement={<Link to={"/chat"} />}
                             secondary={true}
                             label={"Start chatting"} />
-                    </Row>
-                </Grid>
+                    </div>
+                </div>
             </div>
         )
     }

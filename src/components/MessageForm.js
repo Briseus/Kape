@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import { Row, Grid, Col } from 'react-bootstrap'
 import shortid from 'shortid'
-import Paper from 'material-ui/Paper'
 import './../App.css'
 
 export default class MessageForm extends Component {
@@ -65,27 +63,22 @@ export default class MessageForm extends Component {
 
     render() {
         return (
-            <div className="footer">
-            <Paper className="footerPost">
-                <form onSubmit={this.onSubmit}  autoComplete="off">
-                    <Row >
-                        <Grid>
-                            <Col xs={8} md={10} >
+                <form onSubmit={this.onSubmit} autoComplete="off"  className="channelForm">
                                 <TextField
                                     fullWidth={true}
                                     floatingLabelText="Type here to post"
                                     errorText={this.state.errorText}
                                     value={this.state.value}
                                     onChange={this.handleChange} />
-                            </Col>
-                            <Col xs={4} md={2}>
-                                <RaisedButton className="postButton" type="submit" label="Post" />
-                            </Col>
-                        </Grid>
-                    </Row>
+                                    <div style={{paddingLeft: 10}}>
+                                <RaisedButton
+                                    className="postButton"
+                                    type="submit"
+                                    label="Post"
+                                    secondary={true} />
+                                    </div>
+                            
                 </form>
-            </Paper>
-            </div>
 
 
         )

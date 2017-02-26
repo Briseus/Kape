@@ -1,36 +1,45 @@
 import React, { Component } from 'react'
-import { Card, CardHeader, CardText } from 'material-ui/Card'
+import { Card, CardText } from 'material-ui/Card'
+import Chip from 'material-ui/Chip'
 import Linkify from 'linkifyjs/react'
 
 export default class Message extends Component {
 
-    render() {
-        const defaultStyle = {
-            padding: '10px',
-            width: '80%',
-            float: 'left'
-        }
-        const selfPost = {
-            padding: '10px',
-            width: '80%',
-            float: 'right'
-        }
+    renderMessageHeader = () => {
         const time = (
             new Date(this.props.message.time).toLocaleTimeString()
         )
         const user = (
             this.props.message.userName + "#" + this.props.message.userId
         )
+
+        if (this.props.self) {
+            return (
+                <div className="messageHeader">
+                    <Chip labelStyle={{fontSize: 12}}>
+                        {user}
+                    </Chip>
+                    <span className="messageTime">{time} </span>
+                </div>
+            )
+        } else {
+            return (
+                <div className="messageHeader">
+                    <span>{user} {time} </span>
+                </div>
+            )
+        }
+
+    }
+
+    render() {
         return (
-            <li className="message" style={Object.assign({}, this.props.self && selfPost, !this.props.self && defaultStyle)}>
+            <li className="message">
                 <Card >
-                    <CardHeader
-                        title={user}
-                        subtitle={time}
-                    />
-                    <CardText>
+                    {this.renderMessageHeader()}
+                    <CardText style={{ paddingLeft: 16, paddingTop: 0, paddingBottom: 8 }}>
                         <Linkify >
-                        {this.props.message.text}
+                            {this.props.message.text}
                         </Linkify>
                     </CardText>
                 </Card>

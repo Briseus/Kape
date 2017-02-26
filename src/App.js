@@ -33,7 +33,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="rootContainer">
         <Header />
         {React.Children.map(this.props.children, (child) => React.cloneElement(child, { socket: socket, channels: this.state.channels }))}
       </div>
