@@ -69,6 +69,14 @@
   margin: 0px;
 }
 
+.messageAnnouncement {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 16px;
+  font-size: 14px;
+}
+
 .footer {
   height: 10vh
 }

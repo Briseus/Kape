@@ -63,15 +63,20 @@ export default class MessageBox extends Component {
                     user={this.props.user}
                     message={message} />)
             }
+            if (message.userId === "announcement") {
+                return (<span key={message.id} className="messageAnnouncement">
+                    {message.text}
+                </span>)
+            }
             return (<Message
                 key={message.id}
                 user={this.props.user}
                 message={message} />)
         })
         return (
-                <ul className="messagesContainer" ref="messages">
-                    {messageNodes}
-                </ul>
+            <ul className="messagesContainer" ref="messages">
+                {messageNodes}
+            </ul>
         )
     }
 

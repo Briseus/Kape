@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, CardText } from 'material-ui/Card'
 import Chip from 'material-ui/Chip'
 import Linkify from 'linkifyjs/react'
+import Theme from './../Theme'
 
 export default class Message extends Component {
 
@@ -16,7 +17,9 @@ export default class Message extends Component {
         if (this.props.self) {
             return (
                 <div className="messageHeader">
-                    <Chip labelStyle={{fontSize: 12}}>
+                    <Chip
+                        backgroundColor={Theme.palette.primary1Color}
+                        labelStyle={{ fontSize: 12, color: "white" }}>
                         {user}
                     </Chip>
                     <span className="messageTime">{time} </span>
