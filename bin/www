@@ -4,132 +4,123 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('kape:server');
-var http = require('http');
-
-
-/**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+const app =  require('../app')
+const debug = require('debug')('kape:server')
+const http = require('http')
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app)
 
 
 /**
  * Setup socket.io
  */
-var channels = ['general'];
+const channels = ['general']
 
-var io = require('socket.io')(server);
+const io = require('socket.io')(server)
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
 
-  console.log('a user connected');
+  console.log('a user connected')
 
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     socket.to(socket.room).emit('announcement', socket.user + " left channel")
-    console.log('a user disconnected');
-  });
+    console.log('a user disconnected')
+  })
 
   /**
    *  Creates a new channel
    */
-  socket.on('createChannel', function (channel) {
-    channels.push(channel);
+  socket.on('createChannel', (channel) => {
+    channels.push(channel)
     // update all with updated channel list
     io.sockets.emit('channels', channels)
-  });
+  })
 
   /**
    * Join channel when emitting here
    */
-  socket.on('joinChannel', function (user, channel) {
-    socket.room = channel;
-    socket.user = user;
-    socket.join(channel);
+  socket.on('joinChannel', (user, channel) => {
+    socket.room = channel
+    socket.user = user
+    socket.join(channel)
     console.log(socket.user + " joined channel")
     socket.to(channel).emit('announcement', socket.user + " joined channel")
-  });
+  })
 
   /**
    * Forwards messages
    */
-  socket.on('message', function (from, message, channel) {
-    console.log("Got msg " + message + " from " + from + " in " + channel);
-    socket.to(channel).emit('message', from, message, channel);
-  });
+  socket.on('message', (from, message, channel) => {
+    console.log("Got msg " + message + " from " + from + " in " + channel)
+    socket.to(channel).emit('message', from, message, channel)
+  })
 
   /**
    * If called return all current channels
    */
-  socket.on('channels', function () {
-    socket.emit('channels', channels);
-  });
+  socket.on('channels', () => {
+    socket.emit('channels', channels)
+  })
 
-});
-
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+})
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
-  var port = parseInt(val, 10);
+const normalizePort = (val) => {
+
+  const port = parseInt(val, 10)
 
   if (isNaN(port)) {
     // named pipe
-    return val;
+    return val
   }
 
   if (port >= 0) {
     // port number
-    return port;
+    return port
   }
 
-  return false;
+  return false
 }
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(process.env.PORT || '3000')
+app.set('port', port)
 
 /**
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+const onError = (error) => {
   if (error.syscall !== 'listen') {
-    throw error;
+    throw error
   }
 
   var bind = typeof port === 'string'
     ? 'Pipe ' + port
-    : 'Port ' + port;
+    : 'Port ' + port
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
+      console.error(bind + ' requires elevated privileges')
+      process.exit(1)
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
+      console.error(bind + ' is already in use')
+      process.exit(1)
       break;
     default:
-      throw error;
+      throw error
   }
 }
 
@@ -137,10 +128,18 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
-  var addr = server.address();
+const onListening = () => {
+  var addr = server.address()
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    : 'port ' + addr.port
+  debug('Listening on ' + bind)
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
