@@ -35,7 +35,7 @@ export default class Landing extends Component {
         this.setState({
             value: e.target.value
         })
-        if (this.state.value.length >= 3) {
+        if (this.state.value.length < 3) {
             this.setState({
                 errorText: ""
             })

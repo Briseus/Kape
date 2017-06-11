@@ -5,7 +5,7 @@ import MessageForm from './components/MessageForm'
 import Paper from 'material-ui/Paper'
 import shortid from 'shortid'
 
-var socket
+let socket
 
 export default class Chat extends Component {
 

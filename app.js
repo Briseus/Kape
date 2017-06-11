@@ -1,7 +1,10 @@
 const express = require('express')
 const path = require('path')
+const compression = require('compression')
 
 const app = express()
+
+app.use(compression())
 
 app.use(express.static('./build'))
 
@@ -26,5 +29,18 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500)
   res.render('error')
 })
+
+const forceHTTPS = (app) => {
+	app.use(function(req, res, next) {
+		if (req.headers['x-forwarded-proto'] !== 'https') {
+			return res.redirect(['https://', req.get('Host'), req.url].join(''));
+		}
+		return next();
+	});
+};
+
+if(app.get('env') === 'production') {
+  forceHTTPS(app)
+}
 
 module.exports = app

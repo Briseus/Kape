@@ -7,13 +7,13 @@
 const app =  require('../app')
 const debug = require('debug')('kape:server')
 const http = require('http')
+const winston = require('winston')
 
 /**
  * Create HTTP server.
  */
 
 const server = http.createServer(app)
-
 
 /**
  * Setup socket.io
@@ -24,11 +24,11 @@ const io = require('socket.io')(server)
 
 io.on('connection', (socket) => {
 
-  console.log('a user connected')
+  winston.info('a user connected')
 
   socket.on('disconnect', () => {
     socket.to(socket.room).emit('announcement', socket.user + " left channel")
-    console.log('a user disconnected')
+    winston.info('a user disconnected')
   })
 
   /**
@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
     socket.room = channel
     socket.user = user
     socket.join(channel)
-    console.log(socket.user + " joined channel")
+    winston.info(socket.user + " joined channel")
     socket.to(channel).emit('announcement', socket.user + " joined channel")
   })
 
@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
    * Forwards messages
    */
   socket.on('message', (from, message, channel) => {
-    console.log("Got msg " + message + " from " + from + " in " + channel)
+    winston.info("Got msg " + message + " from " + from + " in " + channel)
     socket.to(channel).emit('message', from, message, channel)
   })
 
@@ -112,11 +112,11 @@ const onError = (error) => {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges')
+      winston.error(bind + ' requires elevated privileges')
       process.exit(1)
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use')
+      winston.error(bind + ' is already in use')
       process.exit(1)
       break;
     default:
